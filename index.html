@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suicide FUT — Cartinhas da Temporada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pitch:#0C1322; --panel:#141E33; --panel2:#101828;
+  --line:rgba(231,200,119,.16);
+  --gold:#E7C877; --gold2:#B08D3E; --gold3:#8A6A24;
+  --ink:#EFEAD9; --muted:#93A0B8; --grass:#46B96C;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--pitch);color:var(--ink);font-family:'Barlow',sans-serif;line-height:1.55;
+  background-image:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(231,200,119,.07),transparent),
+    repeating-linear-gradient(90deg,transparent 0 119px,rgba(255,255,255,.012) 119px 120px);}
+h1,h2,h3{font-family:'Anton',sans-serif;letter-spacing:.02em;text-transform:uppercase}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+header{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:'Barlow Condensed';font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-size:.8rem}
+h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.02;margin:.35rem 0 .6rem;color:var(--ink)}
+h1 .gold{color:var(--gold)}
+.sub{color:var(--muted);max-width:52ch;font-size:1.02rem}
+.podium{display:flex;gap:18px;margin-top:36px;flex-wrap:wrap}
+
+/* ===== FUT card ===== */
+.fut{position:relative;width:220px;aspect-ratio:220/312;flex:none;
+  clip-path:polygon(50% 0,86% 6%,97% 15%,97% 78%,50% 100%,3% 78%,3% 15%,14% 6%);
+  background:linear-gradient(160deg,#F4E1A8 0%,var(--gold) 34%,#CBA254 60%,var(--gold2) 100%);
+  color:#241A05;display:flex;flex-direction:column;align-items:center;padding:24px 18px 28px;
+  filter:drop-shadow(0 10px 24px rgba(0,0,0,.55));}
+.fut::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.34) 50%,transparent 58%);
+  transform:translateX(-130%);animation:shine 5.5s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,55%{transform:translateX(-130%)}75%,100%{transform:translateX(130%)}}
+@media (prefers-reduced-motion:reduce){.fut::after{animation:none}}
+.fut .top{display:flex;width:100%;align-items:center;gap:8px}
+.fut .ovrbox{text-align:center;flex:none}
+.fut .ovr{font-family:'Anton';font-size:2.5rem;line-height:1}
+.fut .tag{font-family:'Barlow Condensed';font-weight:700;letter-spacing:.1em;font-size:.62rem;opacity:.75}
+.fut .photo{flex:1;display:flex;justify-content:center}
+.fut .photo .ring{width:96px;height:96px;border-radius:50%;overflow:hidden;
+  border:2.5px solid rgba(36,26,5,.45);background:rgba(36,26,5,.14);
+  display:flex;align-items:center;justify-content:center}
+.fut .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.fut .photo .initials{font-family:'Anton';font-size:2rem;opacity:.5}
+.fut .pname{font-family:'Anton';font-size:1.1rem;text-align:center;margin:.5rem 0 .45rem;
+  border-top:1.5px solid rgba(36,26,5,.35);border-bottom:1.5px solid rgba(36,26,5,.35);padding:.28rem 0;width:100%}
+.fut .grid{display:grid;grid-template-columns:auto auto;justify-content:center;gap:2px 22px;width:100%;
+  font-family:'Barlow Condensed';font-weight:600;font-size:.86rem}
+.fut .grid b{font-weight:700;font-family:'Barlow Condensed';font-size:.92rem}
+.fut .grid .star{font-size:.72em;vertical-align:.18em;margin-left:2px}
+.fut .votes{margin-top:auto;font-family:'Barlow Condensed';font-weight:600;font-size:.68rem;letter-spacing:.14em;opacity:.7}
+.fut.mini{width:178px;padding:18px 14px 20px}
+.fut.mini .ovr{font-size:2rem}
+.fut.mini .photo .ring{width:74px;height:74px}
+.fut.mini .pname{font-size:.92rem}
+.fut.mini .grid{font-size:.78rem}
+.fut.mini .grid b{font-size:.84rem}
+.fut.big{width:258px}
+.fut.big .photo .ring{width:112px;height:112px}
+
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:.4rem;color:var(--ink)}
+.lede{color:var(--muted);margin-bottom:26px;max-width:64ch}
+
+/* ranking */
+.tbl-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-family:'Barlow Condensed';font-size:1rem}
+th{font-weight:700;letter-spacing:.1em;font-size:.78rem;text-transform:uppercase;
+  color:var(--gold);background:var(--panel2);padding:10px 12px;text-align:center}
+td{padding:8px 12px;text-align:center;border-top:1px solid rgba(255,255,255,.05);font-weight:600}
+td.name{text-align:left;font-family:'Barlow';font-weight:600;white-space:nowrap}
+td.pos{color:var(--muted)}
+td.heat{color:#101828;font-weight:700}
+tbody tr{cursor:pointer;transition:background .15s}
+tbody tr:hover{background:rgba(231,200,119,.07)}
+
+/* central */
+.central{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:start}
+.selrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+select{background:var(--panel);color:var(--ink);border:1px solid var(--gold3);border-radius:8px;
+  padding:10px 14px;font-family:'Barlow';font-weight:600;font-size:1rem;cursor:pointer}
+select:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.radar-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;max-width:460px}
+.radar-box svg{width:100%;height:auto;display:block}
+.textcols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+.tc h3{font-size:1rem;color:var(--gold);margin-bottom:12px}
+.power{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold2);
+  border-radius:8px;padding:9px 13px;margin-bottom:8px;font-size:.94rem}
+.quote{border-left:3px solid var(--grass);padding:6px 13px;margin-bottom:10px;color:var(--muted);font-style:italic;font-size:.95rem}
+.quote::before{content:"“"}.quote::after{content:"”"}
+
+/* times recomendados */
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.team{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}
+.team .thead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.team h3{font-size:1.15rem;color:var(--gold)}
+.team .tavg{font-family:'Barlow Condensed';font-weight:700;font-size:.8rem;letter-spacing:.08em;
+  color:#101828;border-radius:6px;padding:3px 9px;white-space:nowrap}
+.team .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.team .chip{font-family:'Barlow Condensed';font-weight:700;font-size:.78rem;color:#101828;
+  border-radius:5px;padding:2px 7px}
+.team .roster{list-style:none;margin-bottom:16px}
+.team .roster li{display:flex;justify-content:space-between;align-items:center;padding:5px 2px;
+  border-top:1px solid rgba(255,255,255,.05);font-weight:600;font-size:.95rem}
+.team .roster b{font-family:'Barlow Condensed';color:#101828;border-radius:5px;padding:1px 8px;font-size:.85rem}
+.team .reason{border-left:3px solid var(--gold2);background:var(--panel2);border-radius:6px;
+  padding:8px 12px;margin-bottom:8px;font-size:.92rem}
+
+footer{padding:34px 0 60px;color:var(--muted);font-size:.88rem}
+@media(max-width:820px){
+  .central{grid-template-columns:1fr;justify-items:center}
+  .textcols{grid-template-columns:1fr}
+  .teams{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Temporada 2026 · Avaliação técnica oficial</div>
+    <h1>Suicide <span class="gold">FUT</span></h1>
+    <p class="sub">Cada jogador avaliou os outros de 0 a 100 em seis fundamentos. As notas abaixo são as médias da galera, depois da limpeza dos dados.</p>
+    <div class="podium" id="podium"></div>
+  </div>
+</header>
+
+<section id="ranking">
+  <div class="wrap">
+    <h2>Ranking geral</h2>
+    <p class="lede">Média das notas recebidas em cada fundamento. Clique num jogador para abrir a cartinha dele.</p>
+    <div class="tbl-scroll">
+      <table id="rankTable">
+        <thead><tr><th>#</th><th style="text-align:left">Jogador</th><th>Geral</th><th>PAC</th><th>SHO</th><th>PAS</th><th>DRI</th><th>DEF</th><th>PHY</th><th>Votos</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="lede" style="margin-top:14px;font-size:.85rem">PAC velocidade e explosão · SHO capacidade de fazer o gol · PAS visão de jogo e precisão · DRI habilidade e controle de bola · DEF marcação e desarmes · PHY resistência e força</p>
+  </div>
+</section>
+
+<section id="central">
+  <div class="wrap">
+    <h2>Central do jogador</h2>
+    <div class="selrow">
+      <label for="playerSel" class="eyebrow" style="letter-spacing:.18em">Selecione</label>
+      <select id="playerSel" aria-label="Selecionar jogador"></select>
+    </div>
+    <div class="central">
+      <div id="cardSlot"></div>
+      <div class="radar-box" id="radarBox" aria-label="Radar de atributos"></div>
+    </div>
+    <div class="textcols">
+      <div class="tc"><h3>Poderes especiais</h3><div id="powers"></div></div>
+      <div class="tc"><h3>O que a galera diz</h3><div id="comments"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="times">
+  <div class="wrap">
+    <h2>Times recomendados</h2>
+    <p class="lede">Dois times desenhados pra dar jogo: médias gerais próximas, cada lado com pelo menos um zagueiro de elite, um artilheiro, armadores e uma opção de goleiro de ofício. Poderes e sinergias também entraram na conta — a ideia é ninguém sair reclamando (nem o Kelvin).</p>
+    <div class="teams" id="teams"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Suicide FUT · dados coletados por formulário entre os próprios jogadores · notas normalizadas · feito com carinho e deboche.</div>
+</footer>
+
+<script>
+const DATA = {"players": [{"pos": 1, "name": "Martins", "ovr": 84.0, "stats": {"PAC": 87.2, "SHO": 91.1, "PAS": 85.7, "DRI": 88.5, "DEF": 73.0, "PHY": 78.6}, "votes": 11, "powers": ["Chess Knight - faz um L pra esquerda puxando pro meio e chuta ao gol", "Chute direto", "O Diferenciado: Martins recebe permanentemente +5 em todos os atributos.", "jutsu bola de fogo", "Chute de longe"], "comments": ["Jogador muito bom, desequilibra a partida"]}, {"pos": 2, "name": "Kelvin", "ovr": 83.8, "stats": {"PAC": 79.2, "SHO": 89.3, "PAS": 89.5, "DRI": 87.4, "DEF": 78.7, "PHY": 78.8}, "votes": 13, "powers": ["Bicicleta", "Jogador completo", "Defesa", "Faço Tudo Nessa Porra: Sempre que seu time sofrer um gol, Kelvin reclama da falta de marcação e sua próxima finalização recebe +8 em SHO.", "Capitão", "driblador", "garoto de programa"], "comments": ["Joga bem mas reclama jogando, excelente lateral e zagueiro", "O melhor", "grande amigo"]}, {"pos": 3, "name": "Andre", "ovr": 78.9, "stats": {"PAC": 87.3, "SHO": 71.2, "PAS": 69.2, "DRI": 64.1, "DEF": 87.9, "PHY": 93.7}, "votes": 12, "powers": ["Chute fora da area", "Bombablast - mete uma bomba do meio campo q ngm ousa nem tentar defender", "Jogador completo", "Visão de defesa", "Trator Humano: André recebe +10 em PHY e +5 em PAC. Uma vez por partida, pode vencer automaticamente um duelo físico e continuar avançando sem perder a posse da bola.", "100kg no supino"], "comments": ["Corre muito, marca bem, dificil oponente", "100kg no supino"]}, {"pos": 4, "name": "Luan", "ovr": 75.0, "stats": {"PAC": 72.5, "SHO": 78.0, "PAS": 69.9, "DRI": 68.8, "DEF": 70.6, "PHY": 90.2}, "votes": 12, "powers": ["Dedão de esquerda", "Chutao de primeira do meio campo", "Jogador completo", "Chute de longo alcance", "Pé de Bomba: Uma vez por partida, Luan pode soltar uma pancada de fora da área, recebendo +15 em SHO na finalização.", "Chutao", "chutar de meio campo"], "comments": ["Jogador completo e com bom fisico", "muito fominha, quando recebe a bola ou é tiro de meta ou é gol ( quase sempre tiro de meta )", "boa", "não passa a bola"]}, {"pos": 5, "name": "Willy", "ovr": 74.5, "stats": {"PAC": 70.3, "SHO": 70.3, "PAS": 77.5, "DRI": 66.3, "DEF": 81.3, "PHY": 81.3}, "votes": 8, "powers": ["Free-Willy: Uma vez por partida Willy pode se livrar da marcação."], "comments": []}, {"pos": 6, "name": "Henrique", "ovr": 74.4, "stats": {"PAC": 75.1, "SHO": 78.6, "PAS": 78.8, "DRI": 79.4, "DEF": 66.8, "PHY": 67.6}, "votes": 10, "powers": ["Kalmium - nunca xinga em jogo, respeitavel", "Jogador completo", "Último Pique: Nos últimos 10 minutos da partida, Henrique domina o campo e consegue defender e atacar na mesma jogada, recebendo +10 em PHY e PAC.", "TI"], "comments": ["Visao de jogo boa, cara tranquilo bom de se ter no time", "grande amigo"]}, {"pos": 7, "name": "Claudio", "ovr": 73.8, "stats": {"PAC": 87.9, "SHO": 67.7, "PAS": 58.9, "DRI": 63.1, "DEF": 76.9, "PHY": 88.3}, "votes": 12, "powers": ["Modo rinoceronte correndo.", "Correr da goleira ate o gol passando por todo mundo", "Jogador completo", "Pressão de Guarda: Uma vez por partida, Cláudio pode arrancar da defesa até a área adversária, criando uma chance clara de gol.", "Explosao", "onipresente", "touro valente, baixa a cabeça e atropela todo mundo", "Anime", "corrida na ponto pra perder a bola no fundo", "Correr pra frente", "correria"], "comments": ["Corre muito e isso acaba fazendo bastante diferenca, se esforca bastante."]}, {"pos": 8, "name": "Galvani", "ovr": 71.2, "stats": {"PAC": 68.7, "SHO": 78.0, "PAS": 73.0, "DRI": 74.8, "DEF": 61.2, "PHY": 71.4}, "votes": 12, "powers": ["Jogar muito bem quando ta motivado", "Jogador completo", "Drible", "Modo Fenômeno: Ao entrar em campo Galvani tem 25% de chance de estar em seu PRIME. Caso esteja no PRIME, Galvani ganha +10 em todos os atributos.", "leptospirose", "Lançamento"], "comments": ["Nao esta no seu auge mas ainda joga bem", "Não passa a bola", "ótimo jogador nas antigas, hoje infelizmente aposentou", "grande amigo"]}, {"pos": 9, "name": "Rix", "ovr": 71.1, "stats": {"PAC": 74.1, "SHO": 80.8, "PAS": 63.0, "DRI": 82.5, "DEF": 59.2, "PHY": 66.7}, "votes": 12, "powers": ["Marcar o próprio time", "Jogador completo", "Pensa num cara que caga muito", "A Bola Procura o Jogador: Sempre que uma jogada ficar indefinida, houver uma disputa ou a posse parecer perdida, há 50% de chance de a bola sobrar para Rix.", "YugiOH"], "comments": ["setto kaiba"]}, {"pos": 10, "name": "Mozz", "ovr": 68.1, "stats": {"PAC": 61.3, "SHO": 86.6, "PAS": 64.5, "DRI": 88.5, "DEF": 49.6, "PHY": 57.8}, "votes": 12, "powers": ["Drible tropeçando na bola", "Arauto do messi - ocasionalmente a bola nao desgruda do pe ate fazer gol", "Jogador completo", "Drible na cara do gol com finalização", "Fumaça na Área: Quando recebe a bola no ataque, Moz ganha +5 em DRI e SHO, podendo driblar o marcador e criar uma chance clara de gol. Porém, recebe -10 em PAC e -5 em DEF e nunca volta para marcar.  Melhores Amigos: Quando Moz e Moisés jogam no mesmo time, ambos recebem +10 em SHO e PAC, mas o time perde -10 em DEF. Quando jogam separados, essa habilidade não é ativada.", "no futebol o pelé, na música o michael jackson, no v7 simplesmente um deus do futebol", "fizz colorado"], "comments": ["Joga muito bem, se tivesse um fisico melhor e marcasse mais seria loucura", "um dos maiores artilheiros do v7 desde 2019", "grande amigo"]}, {"pos": 11, "name": "Pedro", "ovr": 65.2, "stats": {"PAC": 69.8, "SHO": 61.9, "PAS": 64.4, "DRI": 61.9, "DEF": 63.5, "PHY": 69.9}, "votes": 8, "powers": ["Take Perfeito: Uma vez por partida, Pedro captura o momento exato e garante o sucesso de uma jogada decisiva, seja um passe, desarme ou finalização.", "Deeps"], "comments": ["grnade amigo"]}, {"pos": 12, "name": "Guifosca", "ovr": 61.0, "stats": {"PAC": 64.0, "SHO": 60.4, "PAS": 67.9, "DRI": 56.7, "DEF": 57.7, "PHY": 59.2}, "votes": 9, "powers": ["Jogador sólido", "Kevin De Fosca: Uma vez por partida Guifosca pode ativar a habilidade Kevin De Fosca. Ao ativar Guifosca recebe +15 em PAS e SHO para finalizações de fora da área, obtendo controle total do meio campo pelos próximos 7 minutoz.", "calculo 2"], "comments": []}, {"pos": 13, "name": "Moises", "ovr": 60.9, "stats": {"PAC": 53.6, "SHO": 68.0, "PAS": 64.7, "DRI": 59.8, "DEF": 58.9, "PHY": 60.5}, "votes": 12, "powers": ["Barrigada", "Passe Lendario do Karma - faz passes muito bons e ganha +10 de aura quando nao reclama (raro)", "Jogador técnico", "Tanque de Luvas: Moisés pode atuar tanto na linha quanto no gol. Na linha, recebe +5 em PHY e protege melhor a bola; como goleiro, recebe +15 em DEF nas finalizações à queima-roupa.  Melhores Amigos: Quando Moisés e Moz jogam no mesmo time, ambos recebem +10 em SHO e PAC, mas o time perde -10 em DEF. Quando jogam separados, essa habilidade não é ativada.", "Comunismo"], "comments": ["Joga bem, mas reclama muito", "Fica parado esperando a bola chegar pra jogar", "grande amigo"]}, {"pos": 14, "name": "Doardo", "ovr": 60.5, "stats": {"PAC": 53.0, "SHO": 59.6, "PAS": 73.3, "DRI": 62.1, "DEF": 55.3, "PHY": 59.8}, "votes": 13, "powers": ["fazer drible em camera lenta e dar certo", "Jogador sólido", "Passe", "Faz a pose: Quando seu time marca um gol e Du comemora com o em conjunto (comemorações do Grêmio) ganha +1 em todos os atributos até o final da partida.", "altamente bom na micro gameplay, visão de águia", "Nao enxergar sem óculos"], "comments": ["joga calmo e joga bem", "grande amigo doardo"]}, {"pos": 15, "name": "Felipe", "ovr": 53.3, "stats": {"PAC": 57.1, "SHO": 46.7, "PAS": 50.5, "DRI": 44.1, "DEF": 64.1, "PHY": 57.0}, "votes": 12, "powers": ["Jogador técnico", "Ao fazer uma defesa difícil ganha +5 de DEF por 2 minutos (acumulável).", "quebra até partes do corpo para cavar uma falta", "historiador"], "comments": ["grande amigo felipe"]}, {"pos": 16, "name": "Cesar", "ovr": 53.0, "stats": {"PAC": 59.1, "SHO": 44.1, "PAS": 50.5, "DRI": 43.8, "DEF": 55.7, "PHY": 64.8}, "votes": 11, "powers": ["Pula e chuta", "Chuta pulando e marca o richard muito bem", "Jogador sólido", "Não saber oq ta fazendo", "Base Firme: Ao chutar a gol sem pular, César recebe +10 em Finalização.", "chute no ar", "Dar lock em um atacante e ficar correndo atras dele sem olhar pros outros jogadores"], "comments": ["Aprendeu bastante em pouco tempo, constante evolucao"]}, {"pos": 17, "name": "Lucca", "ovr": 49.5, "stats": {"PAC": 46.7, "SHO": 44.2, "PAS": 46.7, "DRI": 44.2, "DEF": 62.1, "PHY": 53.3}, "votes": 12, "powers": ["Gol destinado - a cada 30 gols chutados 1 eh sempre garantido que vai entrar", "Jogador sólido", "Foi Sem Querer Querendo: Sempre que Lucca tentar uma jogada, há 10% de chance de ignorar seus atributos e realizar uma jogada de craque, podendo criar uma chance clara de gol ou salvar o time.", "League of Legends ARENA"], "comments": ["Ta melhorando bastante, logo logo estara a par com o restante, sempre na parceria pra jogar", "grande amigo"]}]};
+const STATS = ["PAC","SHO","PAS","DRI","DEF","PHY"];
+const fmt = v => v.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+
+/* escala amigável: tudo é uma questão de quão dourada a célula fica.
+   40 -> azul-petróleo discreto do próprio site, 100 -> ouro pleno. Ninguém fica "no vermelho". */
+function heat(v){
+  const t = Math.max(0, Math.min(1, (v-40)/60));
+  const a = [122,144,168], b = [231,200,119]; // slate suave -> ouro
+  const c = a.map((x,i)=>Math.round(x+(b[i]-x)*t));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+/* slug para achar a foto: fotos/<slug>.jpg (ou .png) */
+function slug(name){
+  return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\(.*?\)/g,'').trim().replace(/\s+/g,'-');
+}
+function initials(name){
+  return name.replace(/\(.*?\)/g,'').trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase();
+}
+
+function cardHTML(p, cls){
+  const s = p.stats, sl = slug(p.name);
+  const best = STATS.reduce((a,k)=>s[k]>s[a]?k:a, STATS[0]);
+  return `<div class="fut ${cls||''}">
+    <div class="top">
+      <div class="ovrbox"><div class="ovr">${Math.round(p.ovr)}</div><div class="tag">OVR · ${p.pos}º</div></div>
+      <div class="photo"><div class="ring">
+        <img src="fotos/${sl}.jpg" alt="${p.name}"
+             onerror="if(!this.dataset.png){this.dataset.png=1;this.src='fotos/${sl}.png';}else{this.parentNode.innerHTML='<span class=initials>${initials(p.name)}</span>';}">
+      </div></div>
+    </div>
+    <div class="pname">${p.name}</div>
+    <div class="grid">${STATS.map(k=>`<div><b>${Math.round(s[k])}</b> ${k}${k===best?'<span class="star">★</span>':''}</div>`).join('')}</div>
+    <div class="votes">${p.votes} VOTOS</div>
+  </div>`;
+}
+
+document.getElementById('podium').innerHTML =
+  DATA.players.slice(0,3).map(p=>cardHTML(p,'mini')).join('');
+
+const tb = document.querySelector('#rankTable tbody');
+tb.innerHTML = DATA.players.map(p=>`<tr data-name="${p.name}">
+  <td class="pos">${p.pos}</td><td class="name">${p.name}</td>
+  <td class="heat" style="background:${heat(p.ovr)}">${fmt(p.ovr)}</td>
+  ${STATS.map(k=>`<td class="heat" style="background:${heat(p.stats[k])}">${Math.round(p.stats[k])}</td>`).join('')}
+  <td class="pos">${p.votes}</td></tr>`).join('');
+tb.addEventListener('click', e=>{
+  const tr = e.target.closest('tr'); if(!tr) return;
+  sel.value = tr.dataset.name; render(tr.dataset.name);
+  document.getElementById('central').scrollIntoView({behavior:'smooth'});
+});
+
+const sel = document.getElementById('playerSel');
+sel.innerHTML = DATA.players.map(p=>`<option>${p.name}</option>`).join('');
+
+/* ===== radar em SVG puro (sem bibliotecas — funciona offline e no Pages) ===== */
+function radarSVG(p){
+  const W=420, H=360, cx=W/2, cy=H/2+8, R=128, N=STATS.length;
+  const ang = i => -Math.PI/2 + i*2*Math.PI/N;
+  const pt = (i, r) => [cx + r*Math.cos(ang(i)), cy + r*Math.sin(ang(i))];
+  const ring = f => STATS.map((_,i)=>pt(i,R*f).map(v=>v.toFixed(1)).join(',')).join(' ');
+  let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Radar de ${p.name}">`;
+  for(const f of [0.25,0.5,0.75,1])
+    svg += `<polygon points="${ring(f)}" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1"/>`;
+  for(let i=0;i<N;i++){
+    const [x,y] = pt(i,R);
+    svg += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(255,255,255,.10)"/>`;
+    const [lx,ly] = pt(i,R+26);
+    svg += `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle"
+      font-family="Barlow Condensed" font-weight="700" font-size="15" fill="#EFEAD9">${STATS[i]}</text>`;
+    const [vx,vy] = pt(i,R+26);
+    svg += `<text x="${vx}" y="${vy+16}" text-anchor="middle" font-family="Barlow Condensed"
+      font-weight="600" font-size="12" fill="#93A0B8">${Math.round(p.stats[STATS[i]])}</text>`;
+  }
+  const shape = STATS.map((k,i)=>pt(i, R*p.stats[k]/100).map(v=>v.toFixed(1)).join(',')).join(' ');
+  svg += `<polygon points="${shape}" fill="rgba(231,200,119,.24)" stroke="#E7C877" stroke-width="2.5" stroke-linejoin="round"/>`;
+  STATS.forEach((k,i)=>{
+    const [x,y] = pt(i, R*p.stats[k]/100);
+    svg += `<circle cx="${x}" cy="${y}" r="4" fill="#E7C877"/>`;
+  });
+  svg += `<text x="${cx}" y="26" text-anchor="middle" font-family="Anton" font-size="17"
+    fill="#E7C877" letter-spacing="1">${p.name.toUpperCase()}</text></svg>`;
+  return svg;
+}
+
+function render(name){
+  const p = DATA.players.find(x=>x.name===name);
+  document.getElementById('cardSlot').innerHTML = cardHTML(p,'big');
+  document.getElementById('radarBox').innerHTML = radarSVG(p);
+  document.getElementById('powers').innerHTML =
+    p.powers.length ? p.powers.map(t=>`<div class="power">${t}</div>`).join('')
+    : '<div class="quote">a galera ainda não inventou um poder pra esse aqui</div>';
+  document.getElementById('comments').innerHTML =
+    p.comments.length ? p.comments.map(t=>`<div class="quote">${t}</div>`).join('')
+    : '<div class="quote">sem comentários — o silêncio também diz muito</div>';
+}
+sel.addEventListener('change', ()=>render(sel.value));
+render(DATA.players[0].name);
+
+/* ===== times recomendados: divisão pensada pra equilíbrio ===== */
+const TEAMS = [
+  {name:"Time Ouro",
+   players:["Martins","Andre","Henrique","Galvani","Mozz","Pedro","Moises","Cesar","Lucca"],
+   why:[
+     "Martins é o craque do racha, mas aqui vem cercado de um elenco de apoio — ele decide, o resto trabalha.",
+     "Andre é a muralha: melhor DEF e PHY do grupo, cobrindo as costas do ataque inteiro (alguém precisa marcar, porque o Mozz não volta).",
+     "Mozz e Moises juntos ativam o Melhores Amigos (+10 SHO e PAC pra cada) — é isso que compensa a média um pouco menor no papel.",
+     "Moises assume o gol com o Tanque de Luvas (+15 DEF à queima-roupa) quando não estiver na linha.",
+     "Henrique e Pedro seguram o meio, e Galvani é a aposta: se o Modo Fenômeno vier, o time sobe de patamar.",
+     "Com 9 jogadores, o time tem uma substituição a mais pra rodar o elenco e manter o gás."
+   ]},
+  {name:"Time Aço",
+   players:["Kelvin","Luan","Willy","Claudio","Rix","Guifosca","Doardo","Felipe"],
+   why:[
+     "Kelvin é o capitão que faz tudo nessa porra: organiza, arma e finaliza — o coringa que dá liga no time.",
+     "Força distribuída em vez de um craque só: Luan chuta de meio campo, Rix dribla, Claudio atropela.",
+     "Willy e Claudio formam a recomposição mais rápida do racha — correria com DEF de verdade.",
+     "Guifosca e Doardo são os passadores que alimentam o ataque com bola limpa.",
+     "Felipe fecha o gol: cada defesa difícil dá +5 de DEF acumulável — quanto mais pressão, melhor ele fica.",
+     "A média maior no papel equilibra o buff de Melhores Amigos do outro lado."
+   ]}
+];
+
+document.getElementById('teams').innerHTML = TEAMS.map(t=>{
+  const ps = t.players.map(n=>DATA.players.find(p=>p.name===n));
+  const avg = ps.reduce((a,p)=>a+p.ovr,0)/ps.length;
+  const savg = k => ps.reduce((a,p)=>a+p.stats[k],0)/ps.length;
+  return `<div class="team">
+    <div class="thead"><h3>${t.name}</h3><span class="tavg" style="background:${heat(avg)}">MÉDIA ${fmt(avg)} · ${ps.length} JOGADORES</span></div>
+    <div class="chips">${STATS.map(k=>`<span class="chip" style="background:${heat(savg(k))}">${k} ${Math.round(savg(k))}</span>`).join('')}</div>
+    <ul class="roster">${ps.map(p=>`<li><span>${p.name}</span><b style="background:${heat(p.ovr)}">${Math.round(p.ovr)}</b></li>`).join('')}</ul>
+    <div>${t.why.map(w=>`<div class="reason">${w}</div>`).join('')}</div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>
